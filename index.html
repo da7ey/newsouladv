@@ -214,3 +214,4 @@ function navigateImage(direction) {const gallery=projectGalleries[currentProject
 updateLightboxImage();}
 function updateLightboxImage() {const lightbox=document.querySelector('.lightbox');if (!lightbox || currentProject===null) return;const gallery=projectGalleries[currentProject];const img=lightbox.querySelector('img');const prevBtn=lightbox.querySelector('.lightbox-prev');const nextBtn=lightbox.querySelector('.lightbox-next');const showNav=gallery.length > 1;prevBtn.style.display=showNav ? 'flex' :'none';nextBtn.style.display=showNav ? 'flex' :'none';img.style.opacity='0';setTimeout(function() {img.src=gallery[currentImageIndex].src;img.alt=gallery[currentImageIndex].alt;img.style.opacity='1';},150);}
 if (document.readyState==='loading') {document.addEventListener('DOMContentLoaded',initGalleries);} else {initGalleries();}})();</script></body></html>
+

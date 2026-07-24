@@ -1,217 +1,313 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="description" content="New Soul Marketing Solutions - شركة متخصصة في التسويق والتصميم والتنفيذ باحترافية في مصر والشرق الأوسط"><meta name="keywords" content="تسويق,تصميم,تنفيذ,بروباجاندا,إعلانات,مصر,New Soul,Marketing Solutions"><meta name="author" content="New Soul Marketing Solutions"><meta property="og:title" content="New Soul Marketing Solutions"><meta property="og:description" content="من الفكرة إلى التنفيذ - شركة New Soul للحلول التسويقية"><meta property="og:type" content="website"><link rel="preload" as="image" href="images/img_001.webp" type="image/webp" fetchpriority="high">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo to SVG Converter | Powered by New Soul Advertising</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- External Libraries via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.2/dist/svg.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/imagetracerjs@1.2.6/imagetracer_v1.2.6.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 2L38 11V29L20 38L2 29V11L20 2Z" stroke="#7A2BFF" stroke-width="2" fill="none"/>
+                        <path d="M20 10L30 15V25L20 30L10 25V15L20 10Z" fill="#7A2BFF"/>
+                        <circle cx="20" cy="20" r="4" fill="#111"/>
+                    </svg>
+                    <div class="logo-text">
+                        <h1>Logo to SVG Converter</h1>
+                        <span>Powered by New Soul Advertising</span>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-<!-- 
-BROWSER SUPPORT NOTE:
-- This site uses WebP images (95%+ browser support)
-- For older browsers (IE, old Safari), JPEG fallbacks available in images/fallback/
-- To enable fallbacks, replace <img src="images/xxx.webp"> with:
-  <picture>
-    <source srcset="images/xxx.webp" type="image/webp">
-    <img src="images/fallback/xxx.jpg" alt="...">
-  </picture>
--->
-<title>New Soul Marketing Solutions | من الفكرة إلى التنفيذ</title><link rel="dns-prefetch" href="//fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet"><style>
-:root {--primary:#8B5CF6;--primary-dark:#7C3AED;--secondary:#1F2937;--accent:#F59E0B;--light:#F3F4F6;--dark:#111827;--white:#FFF;--gradient:linear-gradient(135deg,#8B5CF6 0,#7C3AED 50%,#6D28D9 100%);}
-* {margin:0;padding:0;box-sizing:border-box;}
-html {scroll-behavior:smooth;}
-body {font-family:'Cairo',sans-serif;background:var(--light);color:var(--dark);line-height:1.6;overflow-x:hidden;}
-header {position:fixed;top:0;width:100%;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,0.1);transition:all 0.3s ease;}
-.header-container {max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;height:70px;}
-.logo {display:flex;align-items:center;gap:10px;text-decoration:none;}
-.logo img {height:50px;width:auto;display:block;}
-.logo-text {font-weight:800;font-size:1.3rem;color:var(--primary);letter-spacing:-0.5px;}
-.desktop-nav {display:flex;gap:30px;align-items:center;}
-.desktop-nav a {text-decoration:none;color:var(--secondary);font-weight:600;font-size:0.95rem;transition:color 0.3s;position:relative;}
-.desktop-nav a:hover {color:var(--primary);}
-.desktop-nav a::after {content:'';position:absolute;bottom:-5px;right:0;width:0;height:2px;background:var(--primary);transition:width 0.3s;}
-.desktop-nav a:hover::after {width:100%;}
-.cta-btn {background:var(--gradient);color:white !important;padding:8px 20px;border-radius:25px;box-shadow:0 4px 15px rgba(139,92,246,0.3);}
-.cta-btn::after {display:none !important;}
-.mobile-toggle {display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;}
-.mobile-toggle span {width:25px;height:3px;background:var(--primary);border-radius:3px;transition:all 0.3s;}
-.mobile-toggle.active span:nth-child(1) {transform:rotate(-45deg) translate(-5px,6px);}
-.mobile-toggle.active span:nth-child(2) {opacity:0;}
-.mobile-toggle.active span:nth-child(3) {transform:rotate(45deg) translate(-5px,-6px);}
-.mobile-nav {display:none;position:fixed;top:70px;right:-100%;width:80%;max-width:300px;height:calc(100vh - 70px);background:white;box-shadow:-5px 0 20px rgba(0,0,0,0.1);transition:right 0.3s ease;z-index:999;padding:30px 20px;}
-.mobile-nav.active {right:0;}
-.mobile-nav a {display:block;padding:15px 0;text-decoration:none;color:var(--secondary);font-weight:600;font-size:1.1rem;border-bottom:1px solid #eee;}
-.mobile-nav a:hover {color:var(--primary);}
-.overlay {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:998;}
-.overlay.active {display:block;}
-.hero {margin-top:70px;background:var(--dark);min-height:90vh;display:flex;align-items:center;position:relative;overflow:hidden;}
-.hero::before {content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(139,92,246,0.3) 0,transparent 70%);border-radius:50%;}
-.hero-container {max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;position:relative;z-index:1;}
-.hero-content h1 {color:white;font-size:3rem;font-weight:800;line-height:1.2;margin-bottom:20px;}
-.hero-content h1 span {background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-content p {color:#9CA3AF;font-size:1.2rem;margin-bottom:30px;line-height:1.8;}
-.hero-btns {display:flex;gap:15px;flex-wrap:wrap;}
-.btn-primary {background:var(--gradient);color:white;padding:12px 30px;border-radius:30px;text-decoration:none;font-weight:700;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(139,92,246,0.4);transition:transform 0.3s,box-shadow 0.3s;border:none;cursor:pointer;font-family:'Cairo',sans-serif;font-size:1rem;}
-.btn-primary:hover {transform:translateY(-2px);box-shadow:0 6px 25px rgba(139,92,246,0.5);}
-.btn-secondary {background:transparent;color:white;padding:12px 30px;border-radius:30px;text-decoration:none;font-weight:700;border:2px solid var(--primary);display:inline-flex;align-items:center;gap:8px;transition:all 0.3s;}
-.btn-secondary:hover {background:var(--primary);color:white;}
-.hero-image {position:relative;}
-.hero-image img {width:100%;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,0.3);display:block;}
-.stats-bar {background:var(--gradient);padding:40px 0;margin-top:-1px;}
-.stats-container {max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center;}
-.stat-item h3 {color:white;font-size:2.5rem;font-weight:800;}
-.stat-item p {color:rgba(255,255,255,0.8);font-size:1rem;margin-top:5px;}
-.section {padding:80px 0; content-visibility:auto; contain-intrinsic-size:0 500px;}
-.section-header {text-align:center;margin-bottom:50px;}
-.section-header h2 {font-size:2.2rem;font-weight:800;color:var(--dark);margin-bottom:15px;}
-.section-header p {color:#6B7280;font-size:1.1rem;max-width:600px;margin:0 auto;}
-.section-header .line {width:60px;height:4px;background:var(--gradient);margin:15px auto 0;border-radius:2px;}
-.about {background:white;}
-.about-container {max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-.about-image {position:relative;}
-.about-image img {width:100%;border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,0.1);display:block;}
-.about-content h3 {font-size:2rem;color:var(--dark);margin-bottom:20px;font-weight:700;}
-.about-content p {color:#4B5563;font-size:1.05rem;line-height:1.8;margin-bottom:20px;}
-.features-list {display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:25px;}
-.feature-item {display:flex;align-items:center;gap:10px;padding:10px;background:var(--light);border-radius:10px;}
-.feature-item svg {width:24px;height:24px;color:var(--primary);flex-shrink:0;}
-.feature-item span {font-weight:600;font-size:0.9rem;color:var(--secondary);}
-.services {background:var(--light);}
-.services-grid {max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
-.service-card {background:white;border-radius:20px;padding:35px 30px;text-align:center;transition:transform 0.3s,box-shadow 0.3s;border:1px solid #E5E7EB;}
-.service-card:hover {transform:translateY(-5px);box-shadow:0 15px 40px rgba(139,92,246,0.15);border-color:var(--primary);}
-.service-icon {width:70px;height:70px;background:var(--gradient);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:white;font-size:1.8rem;}
-.service-card h3 {font-size:1.3rem;color:var(--dark);margin-bottom:12px;font-weight:700;}
-.service-card p {color:#6B7280;font-size:0.95rem;line-height:1.7;}
-.portfolio {background:var(--light);}
-.portfolio-filters {display:flex;justify-content:center;gap:15px;margin-bottom:50px;flex-wrap:wrap;padding:0 20px;}
-.filter-btn {padding:10px 24px;border-radius:30px;border:2px solid #E5E7EB;background:white;color:var(--secondary);font-family:'Cairo',sans-serif;font-weight:600;cursor:pointer;transition:all 0.3s;font-size:0.9rem;}
-.filter-btn.active,.filter-btn:hover {background:var(--gradient);color:white;border-color:var(--primary);box-shadow:0 4px 15px rgba(139,92,246,0.3);}
-.projects-container {max-width:1200px;margin:0 auto;padding:0 20px;display:flex;flex-direction:column;gap:50px;}
-.project-card {background:white;border-radius:24px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.08);transition:transform 0.3s,box-shadow 0.3s;}
-.project-card:hover {transform:translateY(-5px);box-shadow:0 20px 60px rgba(0,0,0,0.12);}
-.project-hero {position:relative;display:grid;grid-template-columns:1.2fr 1fr;min-height:400px;}
-.project-hero-img {position:relative;overflow:hidden;}
-.project-hero-img img {width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;}
-.project-card:hover .project-hero-img img {transform:scale(1.05);}
-.project-hero-badge {position:absolute;top:20px;right:20px;background:var(--gradient);color:white;padding:8px 18px;border-radius:30px;font-size:0.8rem;font-weight:700;z-index:2;box-shadow:0 4px 15px rgba(139,92,246,0.4);}
-.project-info {padding:35px;display:flex;flex-direction:column;justify-content:center;}
-.project-client {color:var(--primary);font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
-.project-title {font-size:1.6rem;font-weight:800;color:var(--dark);margin-bottom:8px;line-height:1.3;}
-.project-event {color:var(--accent);font-size:0.95rem;font-weight:600;margin-bottom:15px;}
-.project-desc {color:#4B5563;font-size:0.95rem;line-height:1.8;margin-bottom:20px;}
-.project-tags {display:flex;flex-wrap:wrap;gap:8px;}
-.project-tag {background:var(--light);color:var(--secondary);padding:6px 14px;border-radius:20px;font-size:0.8rem;font-weight:600;}
-.project-gallery {display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:#eee;}
-.project-gallery-item {position:relative;aspect-ratio:4/3;overflow:hidden;cursor:pointer;}
-.project-gallery-item img {width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;}
-.project-gallery-item:hover img {transform:scale(1.1);}
-.project-gallery-overlay {position:absolute;inset:0;background:rgba(139,92,246,0.7);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;}
-.project-gallery-item:hover .project-gallery-overlay {opacity:1;}
-.project-gallery-overlay span {color:white;font-size:2rem;}
-.lightbox {display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:2000;justify-content:center;align-items:center;padding:20px;}
-.lightbox.active {display:flex;}
-.lightbox img {max-width:90%;max-height:90vh;object-fit:contain;border-radius:10px;display:block;}
-.lightbox-close {position:absolute;top:20px;right:20px;color:white;font-size:2.5rem;cursor:pointer;background:none;border:none;font-family:'Cairo',sans-serif;width:50px;height:50px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.3s;}
-.lightbox-close:hover {background:rgba(255,255,255,0.1);}
-.lightbox-nav {position:absolute;top:50%;transform:translateY(-50%);color:white;font-size:2rem;cursor:pointer;background:rgba(255,255,255,0.1);border:none;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background 0.3s;font-family:'Cairo',sans-serif;}
-.lightbox-nav:hover {background:rgba(255,255,255,0.2);}
-.lightbox-prev {left:20px;}
-.lightbox-next {right:20px;}
-.lightbox img {transition:opacity 0.3s ease;}
-.lightbox-nav {font-size:2.5rem;font-weight:300;line-height:1;}
-.lightbox-close {font-size:3rem;font-weight:300;line-height:1;}
-.contact {background:var(--dark);color:white;}
-.contact .section-header h2 {color:white;}
-.contact .section-header p {color:#9CA3AF;}
-.contact-container {max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:60px;}
-.contact-info h3 {font-size:1.5rem;margin-bottom:25px;color:white;}
-.contact-item {display:flex;align-items:center;gap:15px;margin-bottom:20px;padding:15px;background:rgba(255,255,255,0.05);border-radius:12px;transition:background 0.3s;}
-.contact-item:hover {background:rgba(255,255,255,0.1);}
-.contact-icon {width:50px;height:50px;background:var(--gradient);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.3rem;flex-shrink:0;}
-.contact-details h4 {font-size:1rem;margin-bottom:3px;color:white;}
-.contact-details a,.contact-details p {color:#9CA3AF;text-decoration:none;font-size:0.95rem;transition:color 0.3s;}
-.contact-details a:hover {color:var(--primary);}
-.social-links {display:flex;gap:15px;margin-top:25px;}
-.social-link {width:45px;height:45px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;font-size:1.2rem;transition:all 0.3s;}
-.social-link:hover {background:var(--primary);transform:translateY(-3px);}
-.map-container {border-radius:20px;overflow:hidden;height:100%;min-height:300px;background:#374151;}
-.map-container iframe {width:100%;height:100%;border:none;min-height:350px;}
-footer {background:#0F172A;color:#9CA3AF;padding:30px 0;text-align:center;}
-.footer-content {max-width:1200px;margin:0 auto;padding:0 20px;}
-.footer-logo {margin-bottom:15px;}
-.footer-logo img {height:40px;display:block;margin:0 auto;}
-footer p {font-size:0.9rem;}
-@keyframes fadeInUp {from {opacity:0;transform:translateY(30px);}
-to {opacity:1;transform:translateY(0);}}
-.animate {animation:fadeInUp 0.8s ease forwards;}
-.delay-1 {animation-delay:0.1s;}
-.delay-2 {animation-delay:0.2s;}
-.delay-3 {animation-delay:0.3s;}
-@media (max-width:992px) {.hero-container,.about-container,.contact-container {grid-template-columns:1fr;gap:40px;}
-.hero-content h1 {font-size:2.2rem;}
-.stats-container {grid-template-columns:repeat(2,1fr);}
-.features-list {grid-template-columns:1fr;}
-.project-hero {grid-template-columns:1fr;min-height:auto;}
-.project-hero-img {min-height:250px;}}
-@media (max-width:768px) {.desktop-nav {display:none;}
-.mobile-toggle {display:flex;}
-.mobile-nav {display:block;}
-.hero {min-height:auto;padding:60px 0;}
-.hero-content h1 {font-size:1.8rem;}
-.hero-content p {font-size:1rem;}
-.section {padding:50px 0;}
-.section-header h2 {font-size:1.7rem;}
-.stats-container {grid-template-columns:repeat(2,1fr);gap:20px;}
-.stat-item h3 {font-size:1.8rem;}
-.project-info {padding:25px;}
-.project-title {font-size:1.3rem;}
-.project-gallery {grid-template-columns:repeat(2,1fr);}
-.services-grid {grid-template-columns:1fr;}
-.about-content h3 {font-size:1.5rem;}
-.contact-container {gap:40px;}
-.lightbox-nav {display:none;}}
-@media (max-width:480px) {.hero-content h1 {font-size:1.5rem;}
-.stats-container {grid-template-columns:1fr 1fr;}
-.project-gallery {grid-template-columns:repeat(2,1fr);}
-.project-title {font-size:1.1rem;}
-.project-desc {font-size:0.85rem;}
-.hero-btns {flex-direction:column;}
-.btn-primary,.btn-secondary {width:100%;justify-content:center;}}
-::-webkit-scrollbar {width:8px;}
-::-webkit-scrollbar-track {background:var(--light);}
-::-webkit-scrollbar-thumb {background:var(--primary);border-radius:4px;}
-::-webkit-scrollbar-thumb:hover {background:var(--primary-dark);}
-</style></head><body><header id="header"><div class="header-container"><a href="#" class="logo"><img src="images/img_001.webp" loading="eager" fetchpriority="high" alt="New Soul Logo" decoding="async"><span class="logo-text">NEW SOUL</span></a><nav class="desktop-nav"><a href="#home">الرئيسية</a><a href="#about">من نحن</a><a href="#services">خدماتنا</a><a href="#portfolio">أعمالنا</a><a href="#contact" class="cta-btn">تواصل معنا</a></nav><div class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></div></div></header><div class="overlay" id="overlay"></div><nav class="mobile-nav" id="mobileNav"><a href="#home" onclick="closeMenu()">الرئيسية</a><a href="#about" onclick="closeMenu()">من نحن</a><a href="#services" onclick="closeMenu()">خدماتنا</a><a href="#portfolio" onclick="closeMenu()">أعمالنا</a><a href="#contact" onclick="closeMenu()">تواصل معنا</a></nav><section class="hero" id="home"><div class="hero-container"><div class="hero-content"><h1 class="animate">من الفكرة<br><span>إلى التنفيذ</span></h1><p class="animate delay-1">نحن New Soul Marketing Solutions، شريكك المثالي في عالم التسويق والإعلان. نحول أفكارك إلى واقع ملموس بإبداع واحترافية لا حدود لهما.</p><div class="hero-btns animate delay-2"><a href="#portfolio" class="btn-primary"><span>🎨</span> شاهد أعمالنا
-</a><a href="https://wa.me/201090235208" target="_blank" class="btn-secondary"><span>💬</span> تواصل عبر واتساب
-</a></div></div><div class="hero-image animate delay-3"><img src="images/img_001.webp" alt="Enpal Egypt Project - New Soul Marketing Solutions" decoding="async"></div></div></section><div class="stats-bar"><div class="stats-container"><div class="stat-item"><h3>+500</h3><p>مشروع منفذ</p></div><div class="stat-item"><h3>+200</h3><p>عميل سعيد</p></div><div class="stat-item"><h3>+50</h3><p>جائزة وتكريم</p></div><div class="stat-item"><h3>10+</h3><p>سنوات خبرة</p></div></div></div><section class="section about" id="about"><div class="about-container"><div class="about-image"><img src="images/img_002.webp" loading="lazy" alt="New Soul Marketing Solutions - Saudi National Day Event" decoding="async"></div><div class="about-content"><h3>نحن نصنع الفرق</h3><p>شركة New Soul Marketing Solutions هي شركة متخصصة في تقديم حلول تسويقية متكاملة، من التصميم الإبداعي إلى التنفيذ بأعلى معايير الجودة. نعمل مع كبرى الشركات والعلامات التجارية في مصر والشرق الأوسط.</p><p>نؤمن بأن كل فكرة تستحق أن ترى النور، وكل علامة تجارية تستحق أن تُروى قصتها بأجمل طريقة. فريقنا من المصممين والمبدعين جاهز لتحويل رؤيتك إلى واقع.</p><div class="features-list"><div class="feature-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Backdrops احترافية</span></div><div class="feature-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>مجسمات وستاندات</span></div><div class="feature-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>تجهيز معارض</span></div><div class="feature-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>طباعة بأعلى جودة</span></div><div class="feature-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>تصميم مبدع</span></div><div class="feature-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>تنفيذ احترافي</span></div></div></div></div></section><section class="section services" id="services"><div class="section-header"><h2>خدماتنا</h2><p>نقدم مجموعة متكاملة من الخدمات التسويقية والإعلانية بأعلى معايير الجودة</p><div class="line"></div></div></section><section class="section portfolio" id="portfolio"><div class="section-header"><h2>معرض أعمالنا</h2><p>نفخر بأعمالنا التي تعكس جودتنا وإبداعنا في كل مشروع</p><div class="line"></div></div><div class="portfolio-filters"><button class="filter-btn active" data-filter="all">الكل</button><button class="filter-btn" data-filter="saudi">اليوم الوطني السعودي</button><button class="filter-btn" data-filter="enpal">Enpal Egypt</button><button class="filter-btn" data-filter="academy">Academy Hubs</button><button class="filter-btn" data-filter="fabmisr">FABMISR</button><button class="filter-btn" data-filter="exhibition">Fischer</button></div><div class="projects-container" id="projectsContainer"><div class="project-card" data-category="saudi"><div class="project-hero"><div class="project-hero-img"><img src="images/img_003.webp" loading="lazy" alt="XO Club Dubai - Saudi National Day" decoding="async"><div class="project-hero-badge">اليوم الوطني السعودي 93</div></div><div class="project-info"><div class="project-client">XO Club Dubai</div><h3 class="project-title">تجهيزات احتفالية كاملة</h3><div class="project-event">فعالية "نحلم ونحقق"</div><p class="project-desc">تصميم وتنفيذ ديكورات احتفالية كاملة تشمل باك دروب رئيسي، مجسمات ثلاثية الأبعاد لمعالم المملكة، وستاندات إعلانية مضيئة. تم العمل على تجهيزات XO Club Dubai وAfter Party Cairo بأحدث التقنيات البصرية.</p><div class="project-tags"><span class="project-tag">باك دروب</span><span class="project-tag">مجسمات 3D</span><span class="project-tag">ستاندات</span><span class="project-tag">ديكورات</span></div></div></div><div class="project-gallery"><div class="project-gallery-item" onclick="openLightbox('images/img_003.webp','XO Club Dubai - Saudi National Day')"><img src="images/img_003.webp" loading="lazy" alt="XO Club Dubai" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_004.webp','After Party Cairo - Saudi National Day')"><img src="images/img_004.webp" loading="lazy" alt="After Party Cairo" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_005.webp','Saudi National Day Decorations')"><img src="images/img_005.webp" loading="lazy" alt="Decorations" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_002.webp','Saudi National Day Full Setup')"><img src="images/img_002.webp" loading="lazy" alt="Full Setup" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div></div></div><div class="project-card" data-category="enpal"><div class="project-hero"><div class="project-hero-img"><img src="images/img_001.webp" alt="Enpal Egypt - Full Branding" decoding="async"><div class="project-hero-badge">الطاقة الشمسية</div></div><div class="project-info"><div class="project-client">Enpal Egypt</div><h3 class="project-title">هوية بصرية متكاملة</h3><div class="project-event">الشركة الألمانية الرائدة في الطاقة المتجددة</div><p class="project-desc">تصميم وتنفيذ باك دروب رئيسي بألواح شمسية حقيقية، أرضية سداسية مخصصة، ستاندات إعلانية، وبوسترات داخلية بألوان الهوية البصرية. تشمل أيضاً إكسسوارات تصوير تفاعلية ومرآة مخصصة للموظفين.</p><div class="project-tags"><span class="project-tag">باك دروب</span><span class="project-tag">أرضيات</span><span class="project-tag">ستاندات</span><span class="project-tag">إكسسوارات</span></div></div></div><div class="project-gallery"><div class="project-gallery-item" onclick="openLightbox('images/img_001.webp','Enpal Egypt Full Branding')"><img src="images/img_001.webp" alt="Full Branding" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_006.webp','Enpal Egypt Office')"><img src="images/img_006.webp" loading="lazy" alt="Office Setup" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_007.webp','Enpal Egypt Design')"><img src="images/img_007.webp" loading="lazy" alt="Design Concept" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_008.webp','Enpal Egypt Props')"><img src="images/img_008.webp" loading="lazy" alt="Photo Props" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_009.webp','Enpal Egypt Frame')"><img src="images/img_009.webp" loading="lazy" alt="Social Media Frame" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_010.webp','Enpal Egypt Mirror')"><img src="images/img_010.webp" loading="lazy" alt="Mirror Setup" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div></div></div><div class="project-card" data-category="academy"><div class="project-hero"><div class="project-hero-img"><img src="images/img_011.webp" loading="lazy" alt="Academy Hubs - Kids Event" decoding="async"><div class="project-hero-badge">بناء الجسور بين الأجيال</div></div><div class="project-info"><div class="project-client">Orascom Construction × Colas</div><h3 class="project-title">فعالية Building Bridges</h3><div class="project-event">يوم العائلة - 15 Years of Impact</div><p class="project-desc">تصميم وتنفيذ باك دروب خارجي كبير بألوان مبهجة، شعار الحدث، وعناصر تفاعلية للأطفال تشمل بالونات وخيام ملونة. تشمل التجهيزات لافتات خارجية، شعار أكاديمية Hubs ثلاثي الأبعاد، وبوسترات توعوية.</p><div class="project-tags"><span class="project-tag">باك دروب</span><span class="project-tag">خيام</span><span class="project-tag">لافتات</span><span class="project-tag">أنشطة</span></div></div></div><div class="project-gallery"><div class="project-gallery-item" onclick="openLightbox('images/img_011.webp','Academy Hubs Kids')"><img src="images/img_011.webp" loading="lazy" alt="Kids Event" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_001.webp','Academy Hubs Team')"><img src="images/img_001.webp" alt="Team" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_012.webp','Academy Hubs Day')"><img src="images/img_012.webp" loading="lazy" alt="Event Day" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_013.webp','Academy Hubs Group')"><img src="images/img_013.webp" loading="lazy" alt="Group Photo" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_014.webp','Orascom Colas - 3D Signage')"><img src="images/img_014.webp" loading="lazy" alt="3D Signage Design" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div></div><div class="project-card" data-category="fabmisr"><div class="project-hero"><div class="project-hero-img"><img src="images/img_015.webp" loading="lazy" alt="FABMISR Championship" decoding="async"><div class="project-hero-badge">بطولة دولية</div></div><div class="project-info"><div class="project-client">FABMISR × IVSM</div><h3 class="project-title">بطولة Abu Dhabi AJPT</h3><div class="project-event">بطولة الجوجيتسو الدولية - القاهرة</div><p class="project-desc">تصميم وتنفيذ منصة التتويج، باك دروب رسمي، لافتات إعلانية لجميع الرعاة، وإدارة الهوية البصرية للبطولة بأكملها. تشمل تجهيزات الصالة الرياضية بشاشات عرض عملاقة وإضاءة احترافية للبث التلفزيوني.</p><div class="project-tags"><span class="project-tag">منصة تتويج</span><span class="project-tag">بانرات</span><span class="project-tag">شاشات</span><span class="project-tag">إضاءة</span></div></div></div><div class="project-gallery"><div class="project-gallery-item" onclick="openLightbox('images/img_015.webp','FABMISR Championship')"><img src="images/img_015.webp" loading="lazy" alt="Championship" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_016.webp','FABMISR Match')"><img src="images/img_016.webp" loading="lazy" alt="Match" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_017.webp','FABMISR Arena')"><img src="images/img_017.webp" loading="lazy" alt="Arena" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div></div></div><div class="project-card" data-category="exhibition"><div class="project-hero"><div class="project-hero-img"><img src="images/img_018.webp" loading="lazy" alt="Fischer - Booth Design" decoding="async"><div class="project-hero-badge">تجهيز الشوروم والمعارض</div></div><div class="project-info"><div class="project-client">Fischer</div><h3 class="project-title">تجهيزات معرض احترافية</h3><div class="project-event">أول توكيلات وعروض شركة فيشر العالمية في مصر</div><p class="project-desc">تصميم وتنفيذ ستاندات عرض احترافية، مكتب استقبال بتصميم مميز، ولوحات أكريليك مطبوعة بأعلى جودة واحترافية. تشمل التجهيزات عرض منتجات الشركة العالمية بشكل جذاب ومبتكر.</p><div class="project-tags"><span class="project-tag">ستاندات عرض</span><span class="project-tag">مكتب استقبال</span><span class="project-tag">لوحات أكريليك</span><span class="project-tag">تجهيز معارض</span></div></div></div><div class="project-gallery"><div class="project-gallery-item" onclick="openLightbox('images/img_018.webp','Fischer - Booth Design')"><img src="images/img_018.webp" loading="lazy" alt="Fischer Booth Design" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_019.webp','Fischer - Acrylic Panels')"><img src="images/img_019.webp" loading="lazy" alt="Fischer Acrylic Panels" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_020.webp','Fischer - Exhibition Setup')"><img src="images/img_020.webp" alt="Fischer Exhibition Setup" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div><div class="project-gallery-item" onclick="openLightbox('images/img_021.webp','Fischer - Display Stand')"><img src="images/img_021.webp" alt="Fischer Display Stand" decoding="async"><div class="project-gallery-overlay"><span>🔍</span></div></div></div></div></div></section><div class="lightbox" id="lightbox"><button class="lightbox-close" onclick="closeLightbox()">×</button><button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">‹</button><img src="" alt="Portfolio Image" id="lightboxImg" decoding="async"><button class="lightbox-nav lightbox-next" onclick="changeImage(1)">›</button></div><section class="section contact" id="contact"><div class="section-header"><h2>تواصل معنا</h2><p>نحن هنا لتحقيق أفكارك، تواصل معنا الآن</p><div class="line"></div></div><div class="contact-container"><div class="contact-info"><h3>معلومات التواصل</h3><div class="contact-item"><div class="contact-icon">📱</div><div class="contact-details"><h4>واتساب / تليفون</h4><a href="https://wa.me/201090235208" target="_blank">+20 109 023 5208</a></div></div><div class="contact-item"><div class="contact-icon">📍</div><div class="contact-details"><h4>الموقع</h4><a href="https://maps.app.goo.gl/q3dHm9ZDwuMdJEHR7?g_st=ac" target="_blank">شاهد الموقع على الخريطة</a></div></div><div class="contact-item"><div class="contact-icon">📧</div><div class="contact-details"><h4>البريد الإلكتروني</h4><a href="mailto:info@newsouladv.com">info@newsouladv.com</a></div></div><div class="contact-item"><div class="contact-icon">🌐</div><div class="contact-details"><h4>موقعنا الإلكتروني</h4><a href="#">www.newsouladv.com</a></div></div><h3 style="margin-top:30px;">تابعنا على</h3><div class="social-links"><a href="https://www.facebook.com/newsouladv/" target="_blank" class="social-link" title="Facebook">f</a><a href="https://www.tiktok.com/@newsouladv" target="_blank" class="social-link" title="TikTok">♪</a><a href="https://wa.me/201090235208" target="_blank" class="social-link" title="WhatsApp">📱</a></div></div><div class="map-container"><iframe
-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.789!2d31.2345!3d30.1234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA3JzI0LjQiTiAzMcKwMTQnMDQuMiJF!5e0!3m2!1sen!2seg!4v1234567890"
-allowfullscreen=""
-loading="lazy"
-referrerpolicy="no-referrer-when-downgrade"></iframe></div></div></section><footer><div class="footer-content"><div class="footer-logo"><img src="images/img_001.webp" alt="New Soul Logo" decoding="async"></div><p>© 2024 New Soul Marketing Solutions. جميع الحقوق محفوظة.</p><p style="margin-top:10px;font-size:0.8rem;">من الفكرة إلى التنفيذ</p></div></footer><script>
-// Mobile Menu
-const mobileToggle=document.getElementById('mobileToggle');const mobileNav=document.getElementById('mobileNav');const overlay=document.getElementById('overlay');mobileToggle.addEventListener('click',()=> {mobileToggle.classList.toggle('active');mobileNav.classList.toggle('active');overlay.classList.toggle('active');document.body.style.overflow=mobileNav.classList.contains('active') ? 'hidden' :'';});overlay.addEventListener('click',closeMenu);function closeMenu() {mobileToggle.classList.remove('active');mobileNav.classList.remove('active');overlay.classList.remove('active');document.body.style.overflow='';}
-// Header Scroll
-const header=document.getElementById('header');let lastScroll=0;window.addEventListener('scroll',()=> {const currentScroll=window.pageYOffset;if (currentScroll > 100) {header.style.boxShadow='0 2px 20px rgba(0,0,0,0.1)';} else {header.style.boxShadow='0 2px 10px rgba(0,0,0,0.05)';}
-lastScroll=currentScroll;});// Portfolio Filter
-const filterBtns=document.querySelectorAll('.filter-btn');const projectCards=document.querySelectorAll('.project-card');filterBtns.forEach(btn=> {btn.addEventListener('click',()=> {filterBtns.forEach(b=> b.classList.remove('active'));btn.classList.add('active');const filter=btn.getAttribute('data-filter');projectCards.forEach(card=> {if (filter==='all' || card.getAttribute('data-category')===filter) {card.style.display='block';setTimeout(()=> {card.style.opacity='1';card.style.transform='translateY(0)';},50);} else {card.style.opacity='0';card.style.transform='translateY(20px)';setTimeout(()=> {card.style.display='none';},300);}});});});// Lightbox
-const lightbox=document.getElementById('lightbox');const lightboxImg=document.getElementById('lightboxImg');let currentImageIndex=0;let galleryImages=[];function openLightbox(src,alt) {// Collect all visible gallery images
-galleryImages=[];document.querySelectorAll('.project-gallery-item').forEach(item=> {if (item.offsetParent !==null) {const img=item.querySelector('img');galleryImages.push({src:img.src,alt:img.alt});}});// Find current index
-currentImageIndex=galleryImages.findIndex(img=> img.src===src);if (currentImageIndex===-1) currentImageIndex=0;lightboxImg.src=src;lightboxImg.alt=alt;lightbox.classList.add('active');document.body.style.overflow='hidden';}
-function closeLightbox() {lightbox.classList.remove('active');document.body.style.overflow='';}
-function changeImage(direction) {currentImageIndex +=direction;if (currentImageIndex < 0) {currentImageIndex=galleryImages.length - 1;} else if (currentImageIndex >=galleryImages.length) {currentImageIndex=0;}
-lightboxImg.src=galleryImages[currentImageIndex].src;lightboxImg.alt=galleryImages[currentImageIndex].alt;}
-document.addEventListener('keydown',(e)=> {if (e.key==='Escape') {closeLightbox();closeMenu();}
-if (e.key==='ArrowLeft') changeImage(-1);if (e.key==='ArrowRight') changeImage(1);});lightbox.addEventListener('click',(e)=> {if (e.target===lightbox) {closeLightbox();}});// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor=> {anchor.addEventListener('click',function (e) {e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if (target) {target.scrollIntoView({behavior:'smooth',block:'start'});}});});// Animations
-const observerOptions={threshold:0.1,rootMargin:'0 0 -50px 0'};const observer=new IntersectionObserver((entries)=> {entries.forEach(entry=> {if (entry.isIntersecting) {entry.target.style.opacity='1';entry.target.style.transform='translateY(0)';}});},observerOptions);document.querySelectorAll('.service-card,.project-card,.stat-item').forEach(el=> {el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity 0.6s ease,transform 0.6s ease';observer.observe(el);});</script><script>
-//==========LIGHTBOX FUNCTIONALITY==========(function() {'use strict';const projectGalleries={};let currentProject=null;let currentImageIndex=0;function initGalleries() {const projects=document.querySelectorAll('.project-card');projects.forEach((project,projectIndex)=> {const galleryItems=project.querySelectorAll('.project-gallery-item');const images=[];galleryItems.forEach((item,imgIndex)=> {const img=item.querySelector('img');if (img) {images.push({src:img.src,alt:img.alt || 'صورة المشروع',element:item});item.addEventListener('click',function(e) {e.preventDefault();e.stopPropagation();openLightbox(projectIndex,imgIndex);});}});projectGalleries[projectIndex]=images;});}
-function getLightbox() {let lightbox=document.querySelector('.lightbox');if (!lightbox) {lightbox=document.createElement('div');lightbox.className='lightbox';lightbox.innerHTML='<button class="lightbox-close" aria-label="إغلاق">×</button>' +
-'<button class="lightbox-nav lightbox-prev" aria-label="السابق">‹</button>' +
-'<button class="lightbox-nav lightbox-next" aria-label="التالي">›</button>' +
-'<img src="" alt="" decoding="async">';document.body.appendChild(lightbox);lightbox.querySelector('.lightbox-close').addEventListener('click',closeLightbox);lightbox.querySelector('.lightbox-prev').addEventListener('click',function(e) {e.stopPropagation();navigateImage(-1);});lightbox.querySelector('.lightbox-next').addEventListener('click',function(e) {e.stopPropagation();navigateImage(1);});lightbox.addEventListener('click',function(e) {if (e.target===lightbox) closeLightbox();});document.addEventListener('keydown',function(e) {if (!lightbox.classList.contains('active')) return;if (e.key==='Escape') closeLightbox();if (e.key==='ArrowLeft') navigateImage(-1);if (e.key==='ArrowRight') navigateImage(1);});}
-return lightbox;}
-function openLightbox(projectIndex,imageIndex) {const gallery=projectGalleries[projectIndex];if (!gallery || gallery.length===0) return;currentProject=projectIndex;currentImageIndex=imageIndex;const lightbox=getLightbox();const img=lightbox.querySelector('img');updateLightboxImage();lightbox.classList.add('active');document.body.style.overflow='hidden';}
-function closeLightbox() {const lightbox=document.querySelector('.lightbox');if (lightbox) {lightbox.classList.remove('active');document.body.style.overflow='';}
-currentProject=null;currentImageIndex=0;}
-function navigateImage(direction) {const gallery=projectGalleries[currentProject];if (!gallery || gallery.length===0) return;currentImageIndex +=direction;if (currentImageIndex < 0) {currentImageIndex=gallery.length - 1;} else if (currentImageIndex >=gallery.length) {currentImageIndex=0;}
-updateLightboxImage();}
-function updateLightboxImage() {const lightbox=document.querySelector('.lightbox');if (!lightbox || currentProject===null) return;const gallery=projectGalleries[currentProject];const img=lightbox.querySelector('img');const prevBtn=lightbox.querySelector('.lightbox-prev');const nextBtn=lightbox.querySelector('.lightbox-next');const showNav=gallery.length > 1;prevBtn.style.display=showNav ? 'flex' :'none';nextBtn.style.display=showNav ? 'flex' :'none';img.style.opacity='0';setTimeout(function() {img.src=gallery[currentImageIndex].src;img.alt=gallery[currentImageIndex].alt;img.style.opacity='1';},150);}
-if (document.readyState==='loading') {document.addEventListener('DOMContentLoaded',initGalleries);} else {initGalleries();}})();</script></body></html>
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Upload Section -->
+            <section class="upload-section" id="uploadSection">
+                <div class="upload-area" id="dropZone">
+                    <div class="upload-icon">
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                            <path d="M32 8V40M32 8L20 20M32 8L44 20" stroke="#7A2BFF" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M16 40H48V52H16V40Z" stroke="#A855F7" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h2>Drag & Drop your image here</h2>
+                    <p>or</p>
+                    <button class="btn btn-primary" id="browseBtn">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="vertical-align:middle;margin-right:8px">
+                            <path d="M10 2V14M10 2L6 6M10 2L14 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M2 14V16C2 17.1046 2.89543 18 4 18H16C17.1046 18 18 17.1046 18 16V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Browse Files
+                    </button>
+                    <input type="file" id="fileInput" accept="image/png,image/jpeg,image/jpg,image/webp" hidden>
+                    <p class="upload-hint">Supports PNG, JPG, WebP</p>
+                </div>
+            </section>
 
+            <!-- Processing Section -->
+            <section class="processing-section hidden" id="processingSection">
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">Initializing...</p>
+                </div>
+            </section>
+
+            <!-- Editor Section -->
+            <section class="editor-section hidden" id="editorSection">
+                <!-- Warning Banner -->
+                <div class="warning-banner hidden" id="warningBanner">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2L2 17H18L10 2Z" stroke="#F59E0B" stroke-width="2"/>
+                        <path d="M10 8V12M10 14V14.5" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>This image doesn't appear to be a logo. Results may not be accurate.</span>
+                </div>
+
+                <!-- Before/After Comparison -->
+                <div class="comparison-container" id="comparisonContainer">
+                    <div class="comparison-wrapper">
+                        <div class="comparison-image before" id="beforeImage">
+                            <img src="" alt="Original" id="originalImg">
+                        </div>
+                        <div class="comparison-image after" id="afterImage">
+                            <div id="svgPreview"></div>
+                        </div>
+                        <div class="comparison-slider" id="comparisonSlider">
+                            <div class="slider-handle">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 6L3 12L9 18M15 6L21 12L15 18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" id="zoomInBtn" title="Zoom In">
+                            <svg width="18" height="18" viewBox="0 0 18 18"><path d="M9 4V14M4 9H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </button>
+                        <button class="toolbar-btn" id="zoomOutBtn" title="Zoom Out">
+                            <svg width="18" height="18" viewBox="0 0 18 18"><path d="M4 9H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </button>
+                        <button class="toolbar-btn" id="fitScreenBtn" title="Fit Screen">
+                            <svg width="18" height="18" viewBox="0 0 18 18"><rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2"/></svg>
+                        </button>
+                        <button class="toolbar-btn" id="toggleGridBtn" title="Toggle Grid">
+                            <svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 6H16M2 12H16M6 2V16M12 2V16" stroke="currentColor" stroke-width="2"/></svg>
+                        </button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" id="toggleFillBtn" title="Toggle Fill">
+                            <svg width="18" height="18" viewBox="0 0 18 18"><rect x="3" y="3" width="12" height="12" fill="currentColor"/></svg>
+                        </button>
+                        <button class="toolbar-btn" id="toggleStrokeBtn" title="Toggle Stroke">
+                            <svg width="18" height="18" viewBox="0 0 18 18"><rect x="3" y="3" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                        </button>
+                    </div>
+                    <div class="toolbar-group">
+                        <button class="toolbar-btn" id="undoBtn" title="Undo">
+                            <svg width="18" height="18" viewBox="0 0 18 18"><path d="M4 8H12C14.2091 8 16 9.79086 16 12C16 14.2091 14.2091 16 12 16H8M4 8L7 5M4 8L7 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <button class="toolbar-btn" id="redoBtn" title="Redo">
+                            <svg width="18" height="18" viewBox="0 0 18 18"><path d="M14 8H6C3.79086 8 2 9.79086 2 12C2 14.2091 3.79086 16 6 16H10M14 8L11 5M14 8L11 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="editor-layout">
+                    <!-- Settings Panel -->
+                    <aside class="settings-panel">
+                        <h3>Conversion Settings</h3>
+
+                        <div class="setting-group">
+                            <label>Threshold <span id="thresholdValue">128</span></label>
+                            <input type="range" id="threshold" min="1" max="255" value="128">
+                        </div>
+
+                        <div class="setting-group">
+                            <label>Number of Colors <span id="colorsValue">16</span></label>
+                            <input type="range" id="numColors" min="2" max="32" value="16">
+                        </div>
+
+                        <div class="setting-group">
+                            <label>Corner Threshold <span id="cornerValue">1.0</span></label>
+                            <input type="range" id="cornerThreshold" min="0.1" max="5" step="0.1" value="1.0">
+                        </div>
+
+                        <div class="setting-group">
+                            <label>Line Threshold <span id="lineValue">1.0</span></label>
+                            <input type="range" id="lineThreshold" min="0.1" max="5" step="0.1" value="1.0">
+                        </div>
+
+                        <div class="setting-group">
+                            <label>Path Omit <span id="pathOmitValue">8</span></label>
+                            <input type="range" id="pathOmit" min="0" max="50" value="8">
+                        </div>
+
+                        <div class="setting-group">
+                            <label>Noise Reduction</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="noiseReduction" checked>
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+
+                        <div class="setting-group">
+                            <label>Smooth Curves</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="smoothCurves" checked>
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+
+                        <div class="setting-group">
+                            <label>Remove Background</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="removeBackground">
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+
+                        <div class="setting-group">
+                            <label>Transparent Background</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="transparentBg">
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+
+                        <div class="setting-group">
+                            <label>Auto Optimize SVG</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="autoOptimize" checked>
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+
+                        <div class="setting-group">
+                            <label>Auto Center</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="autoCenter" checked>
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+
+                        <div class="setting-group">
+                            <label>Auto ViewBox</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="autoViewBox" checked>
+                                <span class="toggle-slider"></span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-full" id="reconvertBtn">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-right:6px">
+                                <path d="M2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 2L6 4M8 2L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Reconvert
+                        </button>
+                    </aside>
+
+                    <!-- Preview & Stats -->
+                    <div class="preview-stats">
+                        <!-- Stats Dashboard -->
+                        <div class="stats-dashboard">
+                            <div class="stat-card">
+                                <span class="stat-label">Paths</span>
+                                <span class="stat-value" id="statPaths">0</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">Nodes</span>
+                                <span class="stat-value" id="statNodes">0</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">SVG Size</span>
+                                <span class="stat-value" id="statSize">0 KB</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">Compression</span>
+                                <span class="stat-value" id="statCompression">0%</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">Colors</span>
+                                <span class="stat-value" id="statColors">0</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">Print Quality</span>
+                                <span class="stat-value" id="statQuality">-</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">Laser Cut</span>
+                                <span class="stat-value" id="statLaser">-</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">File Size</span>
+                                <span class="stat-value" id="statFileSize">0 KB</span>
+                            </div>
+                        </div>
+
+                        <!-- Quality Badge -->
+                        <div class="quality-badge" id="qualityBadge">
+                            <div class="stars" id="qualityStars">★★★★★</div>
+                            <div class="quality-label" id="qualityLabel">Excellent</div>
+                        </div>
+
+                        <!-- Color Editor -->
+                        <div class="color-editor hidden" id="colorEditor">
+                            <h4>Colors Detected</h4>
+                            <div class="color-list" id="colorList"></div>
+                            <button class="btn btn-secondary btn-sm" id="mergeColorsBtn">Merge Same Colors</button>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="downloadSvgBtn">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align:middle;margin-right:6px">
+                                    <path d="M8 2V10M8 10L5 7M8 10L11 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 12H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                Download SVG
+                            </button>
+                            <button class="btn btn-secondary" id="downloadOptimizedBtn">
+                                Optimized SVG
+                            </button>
+                            <button class="btn btn-secondary" id="downloadPngBtn">
+                                Export PNG
+                            </button>
+                            <button class="btn btn-secondary" id="copyClipboardBtn">
+                                Copy to Clipboard
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Logo to SVG Converter - Client-Side Only - No files uploaded to any server</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="utils.js"></script>
+    <script src="imageProcessor.js"></script>
+    <script src="svgOptimizer.js"></script>
+    <script src="ui.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

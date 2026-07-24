@@ -8,33 +8,41 @@
 const SVGOptimizer = (function() {
     'use strict';
 
-    let svgInstance = null;
+    let svgElement = null;
     let history = [];
     let historyIndex = -1;
     const MAX_HISTORY = 20;
 
     /**
-     * Initialize SVG.js instance
+     * Initialize SVG from string
      */
     function init(svgString, containerId) {
         const container = document.getElementById(containerId);
-        container.innerHTML = svgString;
+        if (!container) return null;
 
-        const svgElement = container.querySelector('svg');
+        container.innerHTML = svgString;
+        svgElement = container.querySelector('svg');
+
         if (!svgElement) return null;
 
-        svgInstance = SVG(svgElement);
-        saveState();
-        return svgInstance;
+        // Ensure SVG has proper styling
+        svgElement.style.maxWidth = '100%';
+        svgElement.style.maxHeight = '100%';
+        svgElement.style.width = 'auto';
+        svgElement.style.height = 'auto';
+
+        saveState(svgString);
+        return svgElement;
     }
 
     /**
      * Save current state to history
      */
-    function saveState() {
-        if (!svgInstance) return;
-
-        const svgString = svgInstance.svg();
+    function saveState(svgString) {
+        if (!svgString && svgElement) {
+            svgString = svgElement.outerHTML;
+        }
+        if (!svgString) return;
 
         // Remove future history if we're not at the end
         if (historyIndex < history.length - 1) {
@@ -78,25 +86,32 @@ const SVGOptimizer = (function() {
      * Restore state from history
      */
     function restoreState() {
-        if (!svgInstance || historyIndex < 0) return;
+        if (historyIndex < 0 || !svgElement) return;
 
-        const container = svgInstance.node.parentNode;
+        const container = svgElement.parentNode;
+        if (!container) return;
+
         container.innerHTML = history[historyIndex];
-        svgInstance = SVG(container.querySelector('svg'));
+        svgElement = container.querySelector('svg');
+
+        if (svgElement) {
+            svgElement.style.maxWidth = '100%';
+            svgElement.style.maxHeight = '100%';
+        }
     }
 
     /**
      * Remove small elements
      */
     function removeSmallElements(minArea = 10) {
-        if (!svgInstance) return;
+        if (!svgElement) return;
 
-        const paths = svgInstance.find('path');
-        paths.each(function() {
+        const paths = svgElement.querySelectorAll('path');
+        paths.forEach(path => {
             try {
-                const bbox = this.bbox();
+                const bbox = path.getBBox();
                 if (bbox.width * bbox.height < minArea) {
-                    this.remove();
+                    path.remove();
                 }
             } catch (e) {
                 // Element might not be renderable
@@ -110,19 +125,19 @@ const SVGOptimizer = (function() {
      * Merge similar colors
      */
     function mergeSimilarColors(threshold = 30) {
-        if (!svgInstance) return;
+        if (!svgElement) return;
 
         const colorMap = new Map();
-        const elements = svgInstance.find('path, rect, circle, ellipse, polygon, polyline');
+        const elements = svgElement.querySelectorAll('path, rect, circle, ellipse, polygon, polyline');
 
         // Collect all colors
-        elements.each(function() {
-            const fill = this.attr('fill');
+        elements.forEach(el => {
+            const fill = el.getAttribute('fill');
             if (fill && fill !== 'none') {
                 if (!colorMap.has(fill)) {
                     colorMap.set(fill, []);
                 }
-                colorMap.get(fill).push(this);
+                colorMap.get(fill).push(el);
             }
         });
 
@@ -147,7 +162,7 @@ const SVGOptimizer = (function() {
                 if (distance < threshold) {
                     // Merge color2 into color1
                     const elements2 = colorMap.get(colors[j]);
-                    elements2.forEach(el => el.attr('fill', colors[i]));
+                    elements2.forEach(el => el.setAttribute('fill', colors[i]));
                     merged.add(j);
                 }
             }
@@ -160,16 +175,16 @@ const SVGOptimizer = (function() {
      * Simplify paths by reducing points
      */
     function simplifyPaths(tolerance = 1) {
-        if (!svgInstance) return;
+        if (!svgElement) return;
 
-        const paths = svgInstance.find('path');
+        const paths = svgElement.querySelectorAll('path');
 
-        paths.each(function() {
-            const d = this.attr('d');
+        paths.forEach(path => {
+            const d = path.getAttribute('d');
             if (!d) return;
 
             const simplified = simplifyPathData(d, tolerance);
-            this.attr('d', simplified);
+            path.setAttribute('d', simplified);
         });
 
         saveState();
@@ -179,7 +194,7 @@ const SVGOptimizer = (function() {
      * Simplify path data using Douglas-Peucker algorithm
      */
     function simplifyPathData(d, tolerance) {
-        // Parse path data
+        // Parse path data - extract M and L commands
         const commands = d.match(/[MLHVCSQTAZ][^MLHVCSQTAZ]*/gi) || [];
         if (commands.length < 3) return d;
 
@@ -188,14 +203,22 @@ const SVGOptimizer = (function() {
 
         commands.forEach(cmd => {
             const type = cmd[0];
-            const coords = cmd.slice(1).trim().split(/[\s,]+/).map(Number);
+            const coords = cmd.slice(1).trim().split(/[\s,]+/).map(Number).filter(n => !isNaN(n));
 
             switch(type) {
                 case 'M':
+                    if (coords.length >= 2) {
+                        currentX = coords[0];
+                        currentY = coords[1];
+                        points.push({ x: currentX, y: currentY });
+                    }
+                    break;
                 case 'L':
-                    currentX = coords[0];
-                    currentY = coords[1];
-                    points.push({ x: currentX, y: currentY });
+                    if (coords.length >= 2) {
+                        currentX = coords[0];
+                        currentY = coords[1];
+                        points.push({ x: currentX, y: currentY });
+                    }
                     break;
             }
         });
@@ -272,6 +295,7 @@ const SVGOptimizer = (function() {
      * Parse color string to RGB
      */
     function parseColor(color) {
+        if (!color) return null;
         if (color.startsWith('rgb')) {
             const match = color.match(/\d+/g);
             if (match) {
@@ -289,47 +313,46 @@ const SVGOptimizer = (function() {
      * Center SVG content
      */
     function centerContent() {
-        if (!svgInstance) return;
+        if (!svgElement) return;
 
-        const bbox = svgInstance.bbox();
-        const viewBox = svgInstance.viewbox();
+        try {
+            const bbox = svgElement.getBBox ? svgElement.getBBox() : null;
+            if (!bbox) return;
 
-        if (!viewBox) return;
+            const viewBox = svgElement.getAttribute('viewBox');
+            let vb = viewBox ? viewBox.split(/\s+/).map(Number) : [0, 0, bbox.width, bbox.height];
 
-        const cx = bbox.x + bbox.width / 2;
-        const cy = bbox.y + bbox.height / 2;
+            const cx = bbox.x + bbox.width / 2;
+            const cy = bbox.y + bbox.height / 2;
 
-        const newViewBox = {
-            x: cx - viewBox.width / 2,
-            y: cy - viewBox.height / 2,
-            width: viewBox.width,
-            height: viewBox.height
-        };
-
-        svgInstance.viewbox(newViewBox);
-        saveState();
+            const newViewBox = `${cx - vb[2]/2} ${cy - vb[3]/2} ${vb[2]} ${vb[3]}`;
+            svgElement.setAttribute('viewBox', newViewBox);
+            saveState();
+        } catch (e) {
+            console.warn('Could not center content:', e);
+        }
     }
 
     /**
      * Remove empty paths and groups
      */
     function cleanup() {
-        if (!svgInstance) return;
+        if (!svgElement) return;
 
         // Remove empty paths
-        const paths = svgInstance.find('path');
-        paths.each(function() {
-            const d = this.attr('d');
+        const paths = svgElement.querySelectorAll('path');
+        paths.forEach(path => {
+            const d = path.getAttribute('d');
             if (!d || d.trim().length < 5) {
-                this.remove();
+                path.remove();
             }
         });
 
         // Remove empty groups
-        const groups = svgInstance.find('g');
-        groups.each(function() {
-            if (this.children().length === 0) {
-                this.remove();
+        const groups = svgElement.querySelectorAll('g');
+        groups.forEach(g => {
+            if (g.children.length === 0) {
+                g.remove();
             }
         });
 
@@ -340,21 +363,22 @@ const SVGOptimizer = (function() {
      * Get current SVG string
      */
     function getSVGString() {
-        return svgInstance ? svgInstance.svg() : '';
+        return svgElement ? svgElement.outerHTML : '';
     }
 
     /**
      * Toggle fill visibility
      */
     function toggleFill(show) {
-        if (!svgInstance) return;
+        if (!svgElement) return;
 
-        const elements = svgInstance.find('path, rect, circle, ellipse, polygon');
-        elements.each(function() {
+        const elements = svgElement.querySelectorAll('path, rect, circle, ellipse, polygon');
+        elements.forEach(el => {
             if (show) {
-                this.attr('fill-opacity', 1);
+                el.style.fillOpacity = '1';
+                el.removeAttribute('fill-opacity');
             } else {
-                this.attr('fill-opacity', 0);
+                el.style.fillOpacity = '0';
             }
         });
     }
@@ -363,18 +387,18 @@ const SVGOptimizer = (function() {
      * Toggle stroke visibility
      */
     function toggleStroke(show) {
-        if (!svgInstance) return;
+        if (!svgElement) return;
 
-        const elements = svgInstance.find('path, rect, circle, ellipse, polygon');
-        elements.each(function() {
+        const elements = svgElement.querySelectorAll('path, rect, circle, ellipse, polygon');
+        elements.forEach(el => {
             if (show) {
-                const currentStroke = this.attr('stroke');
+                const currentStroke = el.getAttribute('stroke');
                 if (!currentStroke || currentStroke === 'none') {
-                    this.attr('stroke', '#000');
-                    this.attr('stroke-width', 1);
+                    el.setAttribute('stroke', '#000000');
+                    el.setAttribute('stroke-width', '1');
                 }
             } else {
-                this.attr('stroke', 'none');
+                el.setAttribute('stroke', 'none');
             }
         });
     }
@@ -383,14 +407,14 @@ const SVGOptimizer = (function() {
      * Get all colors in SVG
      */
     function getColors() {
-        if (!svgInstance) return [];
+        if (!svgElement) return [];
 
         const colors = new Set();
-        const elements = svgInstance.find('path, rect, circle, ellipse, polygon, polyline');
+        const elements = svgElement.querySelectorAll('path, rect, circle, ellipse, polygon, polyline');
 
-        elements.each(function() {
-            const fill = this.attr('fill');
-            const stroke = this.attr('stroke');
+        elements.forEach(el => {
+            const fill = el.getAttribute('fill');
+            const stroke = el.getAttribute('stroke');
             if (fill && fill !== 'none') colors.add(fill);
             if (stroke && stroke !== 'none') colors.add(stroke);
         });
@@ -402,16 +426,16 @@ const SVGOptimizer = (function() {
      * Change color
      */
     function changeColor(oldColor, newColor) {
-        if (!svgInstance) return;
+        if (!svgElement) return;
 
-        const elements = svgInstance.find('path, rect, circle, ellipse, polygon, polyline');
+        const elements = svgElement.querySelectorAll('path, rect, circle, ellipse, polygon, polyline');
 
-        elements.each(function() {
-            if (this.attr('fill') === oldColor) {
-                this.attr('fill', newColor);
+        elements.forEach(el => {
+            if (el.getAttribute('fill') === oldColor) {
+                el.setAttribute('fill', newColor);
             }
-            if (this.attr('stroke') === oldColor) {
-                this.attr('stroke', newColor);
+            if (el.getAttribute('stroke') === oldColor) {
+                el.setAttribute('stroke', newColor);
             }
         });
 

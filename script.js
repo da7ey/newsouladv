@@ -17,6 +17,7 @@ const App = (function() {
     let showGrid = false;
     let showFill = true;
     let showStroke = false;
+    let isProcessing = false;
 
     /**
      * Initialize application
@@ -58,7 +59,7 @@ const App = (function() {
         const reconvertBtn = document.getElementById('reconvertBtn');
         if (reconvertBtn) {
             reconvertBtn.addEventListener('click', () => {
-                if (currentFile) {
+                if (currentFile && !isProcessing) {
                     processFile(currentFile);
                 }
             });
@@ -97,28 +98,24 @@ const App = (function() {
             showFill = !showFill;
             e.currentTarget.classList.toggle('active', showFill);
             SVGOptimizer.toggleFill(showFill);
-            refreshPreview();
         });
 
         document.getElementById('toggleStrokeBtn')?.addEventListener('click', (e) => {
             showStroke = !showStroke;
             e.currentTarget.classList.toggle('active', showStroke);
             SVGOptimizer.toggleStroke(showStroke);
-            refreshPreview();
         });
 
         // Undo/Redo
         document.getElementById('undoBtn')?.addEventListener('click', () => {
             if (SVGOptimizer.undo()) {
                 refreshPreview();
-                UI.showNotification('Undo successful', 'success');
             }
         });
 
         document.getElementById('redoBtn')?.addEventListener('click', () => {
             if (SVGOptimizer.redo()) {
                 refreshPreview();
-                UI.showNotification('Redo successful', 'success');
             }
         });
     }
@@ -137,8 +134,8 @@ const App = (function() {
 
         // Download Optimized SVG
         document.getElementById('downloadOptimizedBtn')?.addEventListener('click', () => {
-            if (!currentSVG) return;
             const optimized = SVGOptimizer.getSVGString();
+            if (!optimized) return;
             const blob = new Blob([optimized], { type: 'image/svg+xml' });
             Utils.downloadBlob(blob, 'logo-optimized.svg');
             UI.showNotification('Optimized SVG downloaded!', 'success');
@@ -151,8 +148,9 @@ const App = (function() {
 
         // Copy to clipboard
         document.getElementById('copyClipboardBtn')?.addEventListener('click', async () => {
-            if (!currentSVG) return;
-            const success = await Utils.copyToClipboard(currentSVG);
+            const svg = SVGOptimizer.getSVGString() || currentSVG;
+            if (!svg) return;
+            const success = await Utils.copyToClipboard(svg);
             if (success) {
                 UI.showNotification('Copied to clipboard!', 'success');
             } else {
@@ -173,6 +171,8 @@ const App = (function() {
      * Process file
      */
     async function processFile(file) {
+        if (isProcessing) return;
+        isProcessing = true;
         currentFile = file;
 
         UI.showSection('processingSection');
@@ -195,7 +195,7 @@ const App = (function() {
             // Initialize SVG optimizer
             SVGOptimizer.init(currentSVG, 'svgPreview');
 
-            // Update UI
+            // Update original image preview
             const reader = new FileReader();
             reader.onload = (e) => {
                 UI.setOriginalImage(e.target.result);
@@ -210,10 +210,16 @@ const App = (function() {
             // Update color editor
             updateColors();
 
+            // Reset zoom
+            zoomLevel = 1;
+            applyZoom();
+
         } catch (error) {
             console.error('Processing error:', error);
-            UI.showNotification('Error: ' + error.message, 'error');
+            UI.showNotification('Error: ' + (error.message || 'Unknown error'), 'error');
             UI.showSection('uploadSection');
+        } finally {
+            isProcessing = false;
         }
     }
 
@@ -227,11 +233,13 @@ const App = (function() {
         if (svgElement) {
             svgElement.style.transform = `scale(${zoomLevel})`;
             svgElement.style.transformOrigin = 'center center';
+            svgElement.style.transition = 'transform 0.2s ease';
         }
 
         if (imgElement) {
             imgElement.style.transform = `scale(${zoomLevel})`;
             imgElement.style.transformOrigin = 'center center';
+            imgElement.style.transition = 'transform 0.2s ease';
         }
     }
 
@@ -240,29 +248,35 @@ const App = (function() {
      */
     function refreshPreview() {
         const svgString = SVGOptimizer.getSVGString();
-        UI.setSVGPreview(svgString);
+        if (svgString) {
+            UI.setSVGPreview(svgString);
 
-        // Update stats
-        if (currentStats) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(svgString, 'image/svg+xml');
-            const paths = doc.querySelectorAll('path');
+            // Update stats
+            if (currentStats) {
+                try {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(svgString, 'image/svg+xml');
+                    const paths = doc.querySelectorAll('path');
 
-            let nodeCount = 0;
-            paths.forEach(path => {
-                const d = path.getAttribute('d') || '';
-                nodeCount += (d.match(/[MLCQS]/g) || []).length;
-            });
+                    let nodeCount = 0;
+                    paths.forEach(path => {
+                        const d = path.getAttribute('d') || '';
+                        nodeCount += (d.match(/[MLCQS]/g) || []).length;
+                    });
 
-            const svgSize = new Blob([svgString]).size;
+                    const svgSize = new Blob([svgString]).size;
 
-            UI.updateStats({
-                ...currentStats,
-                pathCount: paths.length,
-                nodeCount,
-                svgSize,
-                fileSize: svgSize
-            });
+                    UI.updateStats({
+                        ...currentStats,
+                        pathCount: paths.length,
+                        nodeCount,
+                        svgSize,
+                        fileSize: svgSize
+                    });
+                } catch (e) {
+                    console.warn('Could not update stats:', e);
+                }
+            }
         }
     }
 
@@ -270,8 +284,12 @@ const App = (function() {
      * Update color editor
      */
     function updateColors() {
-        const colors = SVGOptimizer.getColors();
-        UI.updateColorEditor(colors);
+        try {
+            const colors = SVGOptimizer.getColors();
+            UI.updateColorEditor(colors);
+        } catch (e) {
+            console.warn('Could not update colors:', e);
+        }
     }
 
     /**
@@ -287,31 +305,59 @@ const App = (function() {
      * Export as PNG
      */
     function exportPNG() {
-        if (!currentSVG) return;
-
-        const svgElement = document.querySelector('#svgPreview svg');
-        if (!svgElement) return;
+        const svgString = SVGOptimizer.getSVGString() || currentSVG;
+        if (!svgString) return;
 
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        const bbox = svgElement.getBBox ? svgElement.getBBox() : 
-                     { width: 500, height: 500 };
 
-        canvas.width = bbox.width || 500;
-        canvas.height = bbox.height || 500;
+        // Default size
+        let width = 800, height = 800;
+
+        // Try to get size from SVG
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(svgString, 'image/svg+xml');
+        const svg = doc.querySelector('svg');
+        if (svg) {
+            const vb = svg.getAttribute('viewBox');
+            if (vb) {
+                const parts = vb.split(/\s+/).map(Number);
+                if (parts.length >= 4) {
+                    width = parts[2];
+                    height = parts[3];
+                }
+            }
+            const w = svg.getAttribute('width');
+            const h = svg.getAttribute('height');
+            if (w && !isNaN(parseFloat(w))) width = parseFloat(w);
+            if (h && !isNaN(parseFloat(h))) height = parseFloat(h);
+        }
+
+        // Scale up for better quality
+        const scale = 2;
+        canvas.width = width * scale;
+        canvas.height = height * scale;
 
         const img = new Image();
-        const svgBlob = new Blob([currentSVG], { type: 'image/svg+xml;charset=utf-8' });
+        const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
         const url = URL.createObjectURL(svgBlob);
 
         img.onload = () => {
-            ctx.drawImage(img, 0, 0);
+            ctx.scale(scale, scale);
+            ctx.drawImage(img, 0, 0, width, height);
             URL.revokeObjectURL(url);
 
             canvas.toBlob((blob) => {
-                Utils.downloadBlob(blob, 'logo-export.png');
-                UI.showNotification('PNG exported!', 'success');
+                if (blob) {
+                    Utils.downloadBlob(blob, 'logo-export.png');
+                    UI.showNotification('PNG exported!', 'success');
+                }
             });
+        };
+
+        img.onerror = () => {
+            URL.revokeObjectURL(url);
+            UI.showNotification('Failed to export PNG', 'error');
         };
 
         img.src = url;

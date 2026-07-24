@@ -8,7 +8,28 @@
 const ImageProcessor = (function() {
     'use strict';
 
-    let currentWorker = null;
+    /**
+     * Wait for ImageTracer library to be available
+     */
+    function waitForImageTracer(timeout = 10000) {
+        return new Promise((resolve, reject) => {
+            const start = Date.now();
+            const check = () => {
+                // ImageTracer.js loads as an instance on window or self
+                if (typeof window.ImageTracer !== 'undefined' || 
+                    (typeof self !== 'undefined' && typeof self.ImageTracer !== 'undefined')) {
+                    // Get the tracer instance (it's already instantiated by the library)
+                    const tracer = window.ImageTracer || self.ImageTracer;
+                    resolve(tracer);
+                } else if (Date.now() - start > timeout) {
+                    reject(new Error('ImageTracer library failed to load. Please check your internet connection and refresh the page.'));
+                } else {
+                    setTimeout(check, 100);
+                }
+            };
+            check();
+        });
+    }
 
     /**
      * Process image through complete pipeline
@@ -22,7 +43,7 @@ const ImageProcessor = (function() {
                 const img = await loadImage(imageSource);
                 onProgress(10, 'Analyzing image...');
 
-                // Resize if too large
+                // Resize if too large (max 1200px for performance)
                 const canvas = Utils.resizeImage(img, 1200);
                 const ctx = canvas.getContext('2d');
                 let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -136,7 +157,9 @@ const ImageProcessor = (function() {
             bgG += data[i + 1];
             bgB += data[i + 2];
         });
-        bgR /= 4; bgG /= 4; bgB /= 4;
+        bgR = Math.round(bgR / 4); 
+        bgG = Math.round(bgG / 4); 
+        bgB = Math.round(bgB / 4);
 
         // Remove pixels close to background color
         for (let i = 0; i < data.length; i += 4) {
@@ -144,7 +167,7 @@ const ImageProcessor = (function() {
                         Math.abs(data[i + 1] - bgG) + 
                         Math.abs(data[i + 2] - bgB);
 
-            if (diff < threshold) {
+            if (diff < threshold * 3) {
                 data[i + 3] = 0; // Make transparent
             }
         }
@@ -253,7 +276,7 @@ const ImageProcessor = (function() {
     function isImageMonochrome(imageData) {
         const data = imageData.data;
         const sampleSize = Math.min(data.length / 4, 1000);
-        const step = Math.floor(data.length / 4 / sampleSize);
+        const step = Math.floor((data.length / 4) / sampleSize) || 1;
 
         let colorVariations = 0;
         let prevGray = -1;
@@ -388,6 +411,8 @@ const ImageProcessor = (function() {
      * Trace multi-color image using ImageTracer
      */
     async function traceMultiColor(imageData, settings) {
+        const tracer = await waitForImageTracer();
+
         return new Promise((resolve, reject) => {
             try {
                 const options = {
@@ -409,9 +434,7 @@ const ImageProcessor = (function() {
                     blurdelta: 20
                 };
 
-                const tracer = new ImageTracer();
                 const svgString = tracer.imagedataToSVG(imageData, options);
-
                 resolve(svgString);
             } catch (error) {
                 reject(error);
@@ -465,7 +488,6 @@ const ImageProcessor = (function() {
         // Clean attributes
         const allElements = svg.querySelectorAll('*');
         allElements.forEach(el => {
-            // Remove default attributes
             if (el.getAttribute('stroke-width') === '1') {
                 el.removeAttribute('stroke-width');
             }
@@ -595,6 +617,7 @@ const ImageProcessor = (function() {
         traceMonochrome,
         traceMultiColor,
         optimizeSVG,
-        calculateStats
+        calculateStats,
+        waitForImageTracer
     };
 })();
